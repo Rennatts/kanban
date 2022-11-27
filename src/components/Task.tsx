@@ -37,7 +37,6 @@ function Task( {index, task}: TaskProps) {
         opacity={isDragging? 0.5 : 1}
         >
             <Textarea
-            value={task.title}
             fontWeight="semibold"
             cursor="inherit"
             border="none"
@@ -47,6 +46,7 @@ function Task( {index, task}: TaskProps) {
             maxH={200}
             focusBorderColor="none"
             color="gray.700"
+            defaultValue={task.title}
             ></Textarea>
         </Box>
     </ScaleFade>
