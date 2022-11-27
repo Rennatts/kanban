@@ -1,9 +1,10 @@
-import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react"
+import { Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react"
 import React, { FormEvent, useRef, useState } from "react"
 import { ColumnType } from "../utils/enums"
 import { v4 as uuidv4 } from 'uuid';
 import { useLocalStorage } from "usehooks-ts";
 import { RawTask } from "../utils/models";
+import { AddIcon } from '@chakra-ui/icons'
 
 type udeDisclosure = {
     isOpen?: any
@@ -58,11 +59,14 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
   
     return (
       <>
-        <Button onClick={onOpen}>Open Modal</Button>
-        <Button ml={4} ref={finalRef}>
-          I'll receive focus on close
-        </Button>
-  
+        <Flex alignItems='center' flexDirection='column' bgColor="gray.100" cursor="pointer" m={4} p={2.5} 
+        _hover={{
+            background: "gray.200",
+            color: "teal.500",
+        }}>
+            <AddIcon color="gray.500" onClick={onOpen}/>
+        </Flex>
+
         <Modal
           initialFocusRef={initialRef}
           finalFocusRef={finalRef}
