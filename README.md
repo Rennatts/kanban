@@ -2,6 +2,8 @@
 
 Kanban project that saves the tasks in the localstorage.
 
+#Project under development
+
 Front-end framework: React typescript
 
 UI: Chakra-UI
