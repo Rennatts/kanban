@@ -1,4 +1,4 @@
-import { Box, ScaleFade, Textarea } from '@chakra-ui/react';
+import { Box, GridItem, ScaleFade, Textarea } from '@chakra-ui/react';
 import { TaskModel } from '../utils/models';
 import { useDrag } from "react-dnd";
 
@@ -11,6 +11,7 @@ type TaskProps = {
 function Task( {index, task}: TaskProps) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "task",
+        item: {id: task.id},
         collect: (monitor) => ({
             isDragging: !!monitor.isDragging()
         }),

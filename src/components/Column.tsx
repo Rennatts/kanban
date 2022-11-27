@@ -17,6 +17,7 @@ import {
     ModalCloseButton,
 } from '@chakra-ui/react'
 import CreateTaskModal from './CreateTaskModal';
+import { useDrop } from 'react-dnd';
 
 const ColumnColorScheme: Record<ColumnType, string> = {
     Todo: 'gray',
@@ -57,7 +58,19 @@ function Column({ column }: { column: ColumnType}) {
         })
     }
 
-    console.log("tasks", tasks);
+    console.log("-----tasks----", tasks);
+
+    const [{ isOver }, drop] = useDrop(() => ({
+        accept: "task",
+        drop: (item:TaskModel) => addTaskToColumn(item.id, column),
+        collect: (monitor) => ({
+            isOver: !!monitor.isOver(),
+        }),
+    }));
+
+    const addTaskToColumn = (id: string, column: ColumnType) => {
+        
+    }
 
     const ColumnTasks = tasks.map((task, index) => (
         task.column === column ? 
@@ -86,6 +99,7 @@ function Column({ column }: { column: ColumnType}) {
             </Badge>
             <CreateTaskModal onSubmit={onCreateTask} column={column} onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
             <Stack
+            ref={drop}
             direction={{ base: 'row', md: 'column' }}
             h={{ base: 300, md: 600 }}
             p={4}
