@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import {
   Box,
   ChakraProvider,
@@ -15,7 +14,6 @@ import {
   SimpleGrid,
   extendTheme,
   Input,
-  Heading
 } from "@chakra-ui/react";
 
 const theme = extendTheme({
@@ -39,7 +37,7 @@ type IColorsProp = {
 }
 
 function ColorPicker({selectedColor, setSelectedColor}: IColorsProp) {
-  const [color, setColor] = useState();
+  const [color, setColor] = useState<string>();
 
   useEffect(() => {
     color? setSelectedColor(color) : ""
@@ -61,9 +59,6 @@ function ColorPicker({selectedColor, setSelectedColor}: IColorsProp) {
 
   return (
     <ChakraProvider theme={theme}>
-      {/* <Center marginTop={50}>
-        <Heading fontSize="xl">Color picker with Chakra UI</Heading>
-      </Center> */}
       <Center marginTop={5}>
         <Popover variant="picker">
           <PopoverTrigger>

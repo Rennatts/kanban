@@ -1,8 +1,7 @@
 import { Box, ScaleFade, Textarea } from '@chakra-ui/react';
-import React from 'react'
 import { TaskModel } from '../utils/models';
 import { useDrag } from "react-dnd";
-import { motion } from 'framer-motion';
+
 
 type TaskProps = {
     index: number;

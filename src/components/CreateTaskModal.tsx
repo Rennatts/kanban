@@ -1,9 +1,6 @@
-import { Box, Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react"
-import React, { FormEvent, useRef, useState } from "react"
+import {Button, Flex, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react"
+import React, { FormEvent, useState } from "react"
 import { ColumnType } from "../utils/enums"
-import { v4 as uuidv4 } from 'uuid';
-import { useLocalStorage } from "usehooks-ts";
-import { RawTask } from "../utils/models";
 import { AddIcon } from '@chakra-ui/icons'
 import ColorPicker from "./ColorPicker";
 import { pickChakraRandomColor } from "../utils/helpers";
@@ -17,11 +14,6 @@ type udeDisclosure = {
 }
 
 function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclosure) {
-    //const { isOpen, onOpen, onOpen } = useDisclosure()
-
-    const titleRef = useRef<HTMLInputElement>(null)
-    const descriptionRef = useRef<HTMLTextAreaElement>(null)
-
     const [selectedColor, setSelectedColor] = useState<string>();
 
 
@@ -29,10 +21,6 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
         title: "",
         description: "",
     })
-
-
-    console.log("111111", selectedColor)
-
 
 
     function handleInputChange(event: any) {
@@ -52,11 +40,6 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
 
         setTask({title: "", description: ""})
     }
-
-    // function childToParent(childdata: string) {
-    //     setSelectedColor(childdata);
-    //     console.log("selectedColor", selectedColor)
-    // }
   
     return (
       <>
