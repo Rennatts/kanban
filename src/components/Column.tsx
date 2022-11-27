@@ -1,6 +1,6 @@
 
 import { Badge, Box, Heading, Stack, useDisclosure } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useLocalStorage } from '../hooks/useLocaStorage';
 import { ColumnType } from '../utils/enums'
 import { RawTask, TaskModel } from '../utils/models';
@@ -47,6 +47,7 @@ const mockTasks: TaskModel[] = [
 function Column({ column }: { column: ColumnType}) {
     const [tasks, setTasks] = useLocalStorage<TaskModel[]>("TASKS", [])
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const [columnTasks, setcolumnTasks]= useState<TaskModel>();
 
     console.log("sssss", tasks)
     function onCreateTask({ ...data }: RawTask) {
@@ -69,7 +70,13 @@ function Column({ column }: { column: ColumnType}) {
     }));
 
     const addTaskToColumn = (id: string, column: ColumnType) => {
-        
+
+        setTasks(prevNotes => {
+            prevNotes.filter(item => item.id === id).forEach(item => item.column = column)
+            return [
+              ...prevNotes,
+            ]
+        })   
     }
 
     const ColumnTasks = tasks.map((task, index) => (
@@ -84,36 +91,34 @@ function Column({ column }: { column: ColumnType}) {
     ));
 
 
-
-
-  return (
-    <Box>
-        <Heading fontSize="md" mb={4} letterSpacing="wide">
-            <Badge
-                px={2}
-                py={1}
+    return (
+        <Box>
+            <Heading fontSize="md" mb={4} letterSpacing="wide">
+                <Badge
+                    px={2}
+                    py={1}
+                    rounded="lg"
+                    colorScheme={ColumnColorScheme[column]}
+                >
+                {column}
+                </Badge>
+                <CreateTaskModal onSubmit={onCreateTask} column={column} onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
+                <Stack
+                ref={drop}
+                direction={{ base: 'row', md: 'column' }}
+                h={{ base: 300, md: 600 }}
+                p={4}
+                mt={2}
+                spacing={4}
                 rounded="lg"
-                colorScheme={ColumnColorScheme[column]}
-            >
-            {column}
-            </Badge>
-            <CreateTaskModal onSubmit={onCreateTask} column={column} onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
-            <Stack
-            ref={drop}
-            direction={{ base: 'row', md: 'column' }}
-            h={{ base: 300, md: 600 }}
-            p={4}
-            mt={2}
-            spacing={4}
-            rounded="lg"
-            boxShadow="md"
-            overflow="auto"
-            >
-                {ColumnTasks}
-            </Stack>
-        </Heading>
-    </Box>
-  )
+                boxShadow="md"
+                overflow="auto"
+                >
+                    {ColumnTasks}
+                </Stack>
+            </Heading>
+        </Box>
+    )
 }
 
 export default Column
