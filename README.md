@@ -1,6 +1,11 @@
 # kanban
 
+Kanban project that saves the tasks in the localstorage.
+
+Front-end framework: React typescript
+
 UI: Chakra-UI
+
 Icons: Chakra-UI Icons
 
 
