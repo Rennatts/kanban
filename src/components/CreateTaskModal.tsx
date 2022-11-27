@@ -43,12 +43,12 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
   
     return (
       <>
-        <Flex alignItems='center' flexDirection='column' bgColor="gray.100" cursor="pointer" m={4} p={2.5} 
+        <Flex onClick={onOpen} alignItems='center' flexDirection='column' bgColor="gray.100" cursor="pointer" m={4} p={2.5} 
         _hover={{
             background: "gray.200",
             color: "teal.500",
         }}>
-            <AddIcon color="gray.500" onClick={onOpen}/>
+            <AddIcon color="gray.500"/>
         </Flex>
 
         <Modal
