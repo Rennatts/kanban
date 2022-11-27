@@ -17,6 +17,7 @@ import {
     ModalCloseButton,
 } from '@chakra-ui/react'
 import CreateTaskModal from './createTaskModal';
+import useTaskCollection from '../hooks/useTaskCollection';
 
 const ColumnColorScheme: Record<ColumnType, string> = {
     Todo: 'gray',
@@ -57,22 +58,20 @@ function Column({ column }: { column: ColumnType}) {
         })
     }
 
-    // function onCreateTask(e:any) {
-    //     // setTasks(prevNotes => {
-    //     //   return [
-    //     //     ...prevNotes,
-    //     //     { ...data, id: uuidV4()},
-    //     //   ]
-    //     // })
-    // }
+    console.log("tasks", tasks);
 
     const ColumnTasks = tasks.map((task, index) => (
-        <Task
+        task.column === column ? 
+        (
+            <Task
             key={task.id}
             task={task}
             index={index}
         />
+        ) : null
     ));
+
+
 
 
   return (
@@ -105,7 +104,3 @@ function Column({ column }: { column: ColumnType}) {
 }
 
 export default Column
-
-function uuidV4(): string {
-    throw new Error('Function not implemented.');
-}
