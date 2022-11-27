@@ -6,6 +6,7 @@ import { useLocalStorage } from "usehooks-ts";
 import { RawTask } from "../utils/models";
 import { AddIcon } from '@chakra-ui/icons'
 import ColorPicker from "./ColorPicker";
+import { pickChakraRandomColor } from "../utils/helpers";
 
 type udeDisclosure = {
     isOpen?: any
@@ -21,7 +22,7 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
     const titleRef = useRef<HTMLInputElement>(null)
     const descriptionRef = useRef<HTMLTextAreaElement>(null)
 
-    const [selectedColor, setSelectedColor] = useState<string>("gray.500");
+    const [selectedColor, setSelectedColor] = useState<string>();
 
 
     const [task, setTask] = useState({
@@ -46,7 +47,7 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
           title: task.title,
           description: task.description,
           column: column,
-          color: selectedColor
+          color: selectedColor || pickChakraRandomColor('.300'),
         })
 
         setTask({title: "", description: ""})

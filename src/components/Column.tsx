@@ -16,8 +16,7 @@ import {
     ModalBody,
     ModalCloseButton,
 } from '@chakra-ui/react'
-import CreateTaskModal from './createTaskModal';
-import useTaskCollection from '../hooks/useTaskCollection';
+import CreateTaskModal from './CreateTaskModal';
 
 const ColumnColorScheme: Record<ColumnType, string> = {
     Todo: 'gray',
