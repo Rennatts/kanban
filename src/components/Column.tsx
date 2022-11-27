@@ -1,9 +1,22 @@
 
-import { Badge, Box, Heading, Stack } from '@chakra-ui/react'
+import { Badge, Box, Heading, Stack, useDisclosure } from '@chakra-ui/react'
 import React from 'react'
+import { useLocalStorage } from '../hooks/useLocaStorage';
 import { ColumnType } from '../utils/enums'
-import { TaskModel } from '../utils/models';
+import { RawTask, TaskModel } from '../utils/models';
+import { v4 as uuidv4 } from 'uuid';
 import Task from './Task';
+import { Button, ButtonGroup } from '@chakra-ui/react'
+import {
+    Modal,
+    ModalOverlay,
+    ModalContent,
+    ModalHeader,
+    ModalFooter,
+    ModalBody,
+    ModalCloseButton,
+} from '@chakra-ui/react'
+import CreateTaskModal from './createTaskModal';
 
 const ColumnColorScheme: Record<ColumnType, string> = {
     Todo: 'gray',
@@ -16,12 +29,14 @@ const mockTasks: TaskModel[] = [
     {
         id: '1',
         title: 'Task 1',
+        description: 'teste 01',
         column: ColumnType.TO_DO,
-        color: 'gray.300',
+        color: 'pink.300',
     },
     {
         id: '2',
         title: 'Task 2',
+        description: 'teste 02',
         column: ColumnType.TO_DO,
         color: 'gray.300',
     }
@@ -29,8 +44,30 @@ const mockTasks: TaskModel[] = [
   
 
 function Column({ column }: { column: ColumnType}) {
+    const [tasks, setTasks] = useLocalStorage<TaskModel[]>("TASKS", [])
+    const { isOpen, onOpen, onClose } = useDisclosure()
 
-    const ColumnTasks = mockTasks.map((task, index) => (
+    console.log("sssss", tasks)
+    function onCreateTask({ ...data }: RawTask) {
+        console.log("data", data)
+        setTasks(prevNotes => {
+          return [
+            ...prevNotes,
+            { ...data, id: uuidv4() },
+          ]
+        })
+    }
+
+    // function onCreateTask(e:any) {
+    //     // setTasks(prevNotes => {
+    //     //   return [
+    //     //     ...prevNotes,
+    //     //     { ...data, id: uuidV4()},
+    //     //   ]
+    //     // })
+    // }
+
+    const ColumnTasks = tasks.map((task, index) => (
         <Task
             key={task.id}
             task={task}
@@ -50,6 +87,7 @@ function Column({ column }: { column: ColumnType}) {
             >
             {column}
             </Badge>
+            <CreateTaskModal onSubmit={onCreateTask} column={column} onOpen={onOpen} isOpen={isOpen} onClose={onClose}/>
             <Stack
             direction={{ base: 'row', md: 'column' }}
             h={{ base: 300, md: 600 }}
@@ -68,3 +106,7 @@ function Column({ column }: { column: ColumnType}) {
 }
 
 export default Column
+
+function uuidV4(): string {
+    throw new Error('Function not implemented.');
+}

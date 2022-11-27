@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import { Container, Heading, SimpleGrid } from '@chakra-ui/react'
 import { DndProvider } from 'react-dnd'

@@ -1,6 +1,8 @@
 import { Box, ScaleFade, Textarea } from '@chakra-ui/react';
 import React from 'react'
 import { TaskModel } from '../utils/models';
+import { useDrag } from "react-dnd";
+import { motion } from 'framer-motion';
 
 type TaskProps = {
     index: number;
@@ -8,9 +10,16 @@ type TaskProps = {
 };
 
 function Task( {index, task}: TaskProps) {
+    const [{ isDragging }, drag] = useDrag(() => ({
+        type: "task",
+        collect: (monitor) => ({
+            isDragging: !!monitor.isDragging()
+        }),
+    }));
   return (
     <ScaleFade in={true} unmountOnExit>
         <Box
+        ref={drag}
         as="div"
         role="group"
         position="relative"
@@ -25,6 +34,7 @@ function Task( {index, task}: TaskProps) {
         fontWeight="bold"
         userSelect="none"
         bgColor={task.color}
+        opacity={isDragging? 0.5 : 1}
         >
             <Textarea
             value={task.title}
