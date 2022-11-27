@@ -49,7 +49,6 @@ function Column({ column }: { column: ColumnType}) {
 
     console.log("sssss", tasks)
     function onCreateTask({ ...data }: RawTask) {
-        console.log("data", data)
         setTasks(prevNotes => {
           return [
             ...prevNotes,

@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useLocalStorage } from "usehooks-ts";
 import { RawTask } from "../utils/models";
 import { AddIcon } from '@chakra-ui/icons'
+import ColorPicker from "./ColorPicker";
 
 type udeDisclosure = {
     isOpen?: any
@@ -20,42 +21,41 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
     const titleRef = useRef<HTMLInputElement>(null)
     const descriptionRef = useRef<HTMLTextAreaElement>(null)
 
+    const [selectedColor, setSelectedColor] = useState<string>("gray.500");
+
+
     const [task, setTask] = useState({
         title: "",
         description: "",
     })
-  
-    const initialRef = React.useRef(null)
-    const finalRef = React.useRef(null)
 
-    // function onCreateTask(data:any) {
-    //     setTask(prevTask => {
-    //       return [
-    //         ...prevTask,
-    //         { ...data, id: uuidv4(), column: column, color: 'green.300' },
-    //       ]
-    //     })
-    // }
+
+    console.log("111111", selectedColor)
+
+
 
     function handleInputChange(event: any) {
-        console.log("event", event.target)
         setTask({...task, [event.target.name]: event.target.value});
-
-        console.log("task", task)
     }
 
 
     function handleSubmit(e: FormEvent) {
-        console.log("eee", e)
         e.preventDefault()
     
         onSubmit({
           title: task.title,
           description: task.description,
           column: column,
-          color: 'green.300'
+          color: selectedColor
         })
+
+        setTask({title: "", description: ""})
     }
+
+    // function childToParent(childdata: string) {
+    //     setSelectedColor(childdata);
+    //     console.log("selectedColor", selectedColor)
+    // }
   
     return (
       <>
@@ -68,8 +68,6 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
         </Flex>
 
         <Modal
-          initialFocusRef={initialRef}
-          finalFocusRef={finalRef}
           isOpen={isOpen}
           onClose={onClose}
         >
@@ -88,6 +86,7 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
                         <Textarea name="description" value={task.description} onChange={(e)=> handleInputChange(e)} placeholder='description'/>
                     </FormControl>
                 </ModalBody>
+                <ColorPicker selectedColor={selectedColor} setSelectedColor={setSelectedColor}></ColorPicker>
   
             <ModalFooter>
               <Button onClick={handleSubmit} colorScheme='blue' mr={3}>
