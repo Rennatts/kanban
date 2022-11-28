@@ -57,7 +57,7 @@ function Task( {index, task}: TaskProps) {
             maxH={200}
             focusBorderColor="none"
             color="gray.700"
-            defaultValue={task.title}
+            defaultValue={task.description}
             ></Textarea>
         </Box>
     </ScaleFade>

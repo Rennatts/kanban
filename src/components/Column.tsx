@@ -29,14 +29,12 @@ const ColumnColorScheme: Record<ColumnType, string> = {
 const mockTasks: TaskModel[] = [
     {
         id: '1',
-        title: 'Task 1',
         description: 'teste 01',
         column: ColumnType.TO_DO,
         color: 'pink.300',
     },
     {
         id: '2',
-        title: 'Task 2',
         description: 'teste 02',
         column: ColumnType.TO_DO,
         color: 'gray.300',
@@ -57,9 +55,9 @@ function Column({ column }: { column: ColumnType}) {
             { ...data, id: uuidv4() },
           ]
         })
+        window.location.reload();
     }
 
-    console.log("-----tasks----", tasks);
 
     const [{ isOver }, drop] = useDrop(() => ({
         accept: "task",
@@ -77,6 +75,7 @@ function Column({ column }: { column: ColumnType}) {
               ...prevNotes,
             ]
         })   
+        window.location.reload();
     }
 
     const ColumnTasks = tasks.map((task, index) => (

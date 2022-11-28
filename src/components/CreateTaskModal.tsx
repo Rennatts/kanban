@@ -32,7 +32,6 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
         e.preventDefault()
     
         onSubmit({
-          title: task.title,
           description: task.description,
           column: column,
           color: selectedColor || pickChakraRandomColor('.300'),
@@ -60,11 +59,6 @@ function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclos
             <ModalHeader>Create new task</ModalHeader>
             <ModalCloseButton />
                 <ModalBody pb={6}>
-                    <FormControl>
-                        <FormLabel>Title</FormLabel>
-                        <Input name="title" value={task.title} onChange={(e)=> handleInputChange(e)} placeholder='title' />
-                    </FormControl>
-
                     <FormControl mt={4}>
                         <FormLabel>Description</FormLabel>
                         <Textarea name="description" value={task.description} onChange={(e)=> handleInputChange(e)} placeholder='description'/>
