@@ -18,7 +18,7 @@ function Task( {index, task}: TaskProps) {
         }),
     }));
   return (
-    <ScaleFade in={true} unmountOnExit onClick={(e:any) => console.log("task", task)}>
+    <ScaleFade in={true} unmountOnExit>
         <Box
         ref={drag}
         as="div"

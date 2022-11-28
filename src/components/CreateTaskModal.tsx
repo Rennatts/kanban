@@ -6,11 +6,11 @@ import ColorPicker from "./ColorPicker";
 import { pickChakraRandomColor } from "../utils/helpers";
 
 type udeDisclosure = {
-    isOpen?: any
-    onOpen?: any
-    onClose?: any
+    isOpen?: boolean
+    onOpen?: ()=> void;
+    onClose?: ()=> void;
     column: ColumnType;
-    onSubmit: any;
+    onSubmit: ()=> void;
 }
 
 function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclosure) {
