@@ -4,13 +4,14 @@ import { ColumnType } from "../utils/enums"
 import { AddIcon } from '@chakra-ui/icons'
 import ColorPicker from "./ColorPicker";
 import { pickChakraRandomColor } from "../utils/helpers";
+import { RawTask } from "../utils/models";
 
 type udeDisclosure = {
-    isOpen?: boolean
-    onOpen?: ()=> void;
-    onClose?: ()=> void;
+    isOpen: boolean;
+    onOpen: ()=> void;
+    onClose: ()=> void;
     column: ColumnType;
-    onSubmit: ()=> void;
+    onSubmit: ({description, column, color}:RawTask)=> void;
 }
 
 function CreateTaskModal({isOpen, onOpen, onClose, column, onSubmit}: udeDisclosure) {

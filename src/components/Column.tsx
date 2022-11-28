@@ -47,7 +47,6 @@ function Column({ column }: { column: ColumnType}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const [columnTasks, setcolumnTasks]= useState<TaskModel>();
 
-    console.log("sssss", tasks)
     function onCreateTask({ ...data }: RawTask) {
         setTasks(prevNotes => {
           return [
