@@ -1,21 +1,29 @@
-# kanban
+## Kanban Board
+This is a Kanban board project that allows you to save tasks in your local storage.
 
-Kanban project that saves the tasks in the localstorage.
-
-#Project under development
-
-Front-end framework: React typescript
-
-UI: Chakra-UI
-
-Icons: Chakra-UI Icons
+## Features
+Drag and drop cards between columns.
+Save tasks in your local storage.
 
 
-react-dnd to grap and drop the cards
+## Technologies
+- React (Typescript)
+- Chakra-UI for UI design
+- Chakra-UI Icons for icons
+- React-dnd for drag and drop functionality
+
+## Getting Started
+Installation
+To install the necessary dependencies, run:
+`yarn install`
+
+## How to Run
+To start the project, run:
+`npm run dev`
 
 
-##How to run
+** This will start the development server.
 
-yarn install
 
-npm run dev
+## Contributions
+Contributions are welcome. If you find any issues or want to suggest any improvements, please create a pull request or submit an issue.
