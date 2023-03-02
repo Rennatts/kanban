@@ -13,12 +13,11 @@ Save tasks in your local storage.
 - React-dnd for drag and drop functionality
 
 ## Getting Started
-Installation
-To install the necessary dependencies, run:
+To install the necessary dependencies: 
 `yarn install`
 
 ## How to Run
-To start the project, run:
+To start the project:
 `npm run dev`
 
 
