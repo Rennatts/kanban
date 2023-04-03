@@ -2,7 +2,7 @@
 This is a Kanban board project that allows you to save tasks in your local storage.
 
 ## Preview
-<iframe src="https://www.veed.io/embed/57bc6b1f-a407-43f7-9d31-a426cf7305c0" width="744" height="504" frameborder="0" title="Gravação de Tela 2023-04-03 às 16.50.48" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+![Alt Text](./src/video.gif)
 
 ## Features
 Drag and drop cards between columns.
