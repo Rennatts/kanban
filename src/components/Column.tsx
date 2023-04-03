@@ -57,6 +57,25 @@ function Column({ column }: { column: ColumnType}) {
         window.location.reload();
     }
 
+    function onDeleteTask(id: string) {
+        setTasks(prevTasks => {
+            return prevTasks.filter(task => task.id !== id);
+        });
+        window.location.reload();
+        
+    }
+
+
+    // function onDeleteTask({ ...data }: RawTask) {
+    //     setTasks(prevNotes => {
+    //       return [
+    //         ...prevNotes,
+    //         { ...data, id: uuidv4() },
+    //       ]
+    //     })
+    //     window.location.reload();
+    // }
+
 
     const [{ isOver }, drop] = useDrop(() => ({
         accept: "task",
@@ -84,6 +103,7 @@ function Column({ column }: { column: ColumnType}) {
             key={task.id}
             task={task}
             index={index}
+            onDeleteTask={onDeleteTask}
         />
         ) : null
     ));

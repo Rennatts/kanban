@@ -1,4 +1,4 @@
-import { Box, Flex, GridItem, ScaleFade, Textarea } from '@chakra-ui/react';
+import { Box, Button, Flex, GridItem, ScaleFade, Textarea } from '@chakra-ui/react';
 import { TaskModel } from '../utils/models';
 import { useDrag } from "react-dnd";
 import { DeleteIcon, EditIcon} from '@chakra-ui/icons'
@@ -7,9 +7,10 @@ import { DeleteIcon, EditIcon} from '@chakra-ui/icons'
 type TaskProps = {
     index: number;
     task: TaskModel;
+    onDeleteTask: (id: string) => void;
 };
 
-function Task( {index, task}: TaskProps) {
+function Task( {index, task, onDeleteTask}: TaskProps) {
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "task",
         item: {id: task.id},
@@ -37,15 +38,14 @@ function Task( {index, task}: TaskProps) {
         bgColor={task.color}
         opacity={isDragging? 0.5 : 1}
         >
-            <Box mt={10}  w="20%" position="relative" left="120px" top="-20px" cursor="pointer" m={4} p={2.5}>
-                <DeleteIcon color="gray.500"
-                 _hover={{
-                    color: "white"}}
-                />
-                <EditIcon color="gray.500" mt={2}
-                 _hover={{
-                    color: "white"}}
-                />
+            <Box 
+            mt={10}  w="20%" position="relative" left="90px" top="-20px" cursor="pointer" m={4} p={2.5} z-index={100}>
+                <Button onClick={() => onDeleteTask(task.id)}>
+                    <DeleteIcon color="gray.500"
+                    _hover={{
+                        color: "white"}}
+                    />
+                </Button>
             </Box>
             <Textarea
             fontWeight="semibold"
